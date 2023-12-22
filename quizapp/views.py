@@ -19,7 +19,7 @@ def qiuz(request):
     return render(request, 'home.html', context)
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def question(request, pk):
     questions = Question.objects.filter(quiz_id=pk)
     if questions.count() > 5:
