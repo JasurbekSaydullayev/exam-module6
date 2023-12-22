@@ -1,10 +1,10 @@
 from django.urls import path, include
 
-from  .views import question, qiuz, result_list
+from .views import question, quiz, ResultList
 
 urlpatterns = [
-    path('', qiuz, name='quiz'),
+    path('', quiz, name='quiz'),
     path('quiz/<int:pk>/', question, name='quistion'),
-    path('results/', result_list, name='results'),
+    path('results/', ResultList.as_view(), name='results'),
 
 ]
