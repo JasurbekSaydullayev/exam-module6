@@ -2,9 +2,16 @@
 {% load static %}
 
 {% block body %}
-<h1>Test page</h1>
+
 <form method="post">
     {% csrf_token %}
+    {% if not user.is_authenticated %}
+    <p>Iltimos test yechishdan oldin saytga kiring yoki ro'yhatdan o'ting</p>
+    <a href="{% url 'users:login' %}">Kirish uchun ssilka</a>
+    <p></p>
+    <a href="{% url 'users:register' %}">Ro'yhatdan o'tish uchun ssilka</a>
+    {% else %}
+    <h1>Test page</h1>
     {% for q in questions %}
         {{ q.name }}<br>
         {% for answer in q.answers.all %}
@@ -14,7 +21,9 @@
         <hr>
     {% endfor %}
 
+
     <button type="submit">Natijani kurish</button>
 </form>
+    {% endif %}
 
 {% endblock %}
